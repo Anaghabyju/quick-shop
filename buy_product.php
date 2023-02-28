@@ -1,6 +1,8 @@
 <?php 
 session_start();
 include 'connectr.php';
+$id=$_GET['id'];
+$data=mysqli_query($con,"SELECT * FROM product_tbl WHERE product_id='$id'");
 if(isset($_POST['b1'])){
 $quantity=$_POST['e1'];
 // $den=mysqli_query($con,"INSERT INTO order_tbl(available_quantity)VALUES('$quantity')");
@@ -8,6 +10,13 @@ $id=$_GET['id'];
 $date=date("d/m/Y");
 $cust=$_SESSION['log'];  
 mysqli_query($con,"INSERT INTO order_tbl(product_id,customer_id,status,date,available_quantity)VALUES('$id','$cust','booking','$date','$quantity')");
+}
+if(isset($_POST['a1'])){
+  $quantity=$_POST['e1'];
+  $id=$_GET['id'];
+  $cust=$_SESSION['log']; 
+  mysqli_query($con,"INSERT INTO cart_tbl(product_id,customer_id,status,available_quantity)VALUES('$id','$cust','booking','$quantity')");
+
 }
 ?> 
 <!DOCTYPE html>
@@ -53,7 +62,9 @@ mysqli_query($con,"INSERT INTO order_tbl(product_id,customer_id,status,date,avai
   <!-- Main Sidebar Container -->
  
       <!-- /.sidebar-menu -->
-    
+      <?php
+  include 'customer_sidebar.php';
+  ?>
     <!-- /.sidebar -->
   </aside>
 
@@ -64,41 +75,51 @@ mysqli_query($con,"INSERT INTO order_tbl(product_id,customer_id,status,date,avai
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1 class="m-0">Dashboard</h1>
+            <!-- <h1 class="m-0">Dashboard</h1> -->
           </div><!-- /.col -->
           <div class="col-sm-6">
-            <ol class="breadcrumb float-sm-right">
+            <!-- <ol class="breadcrumb float-sm-right">
               <li class="breadcrumb-item"><a href="#">Home</a></li>
               <li class="breadcrumb-item active">Dashboard v1</li>
-            </ol>
+            </ol> -->
           </div><!-- /.col -->
         </div><!-- /.row -->
       </div><!-- /.container-fluid -->
     </div>
-    <div class="col-sm-4"style="margin-left:20%;">
+    <div class="col-sm-15">
+   
     <div class="card-body login-card-body">
+     <?php
+     while($var=mysqli_fetch_assoc($data)){?>
+       <img src="./img/<?php echo $var['image']?> "height='20%'width='20%'>
+       <b><h1>Product details</h1></b>
+       product name: <?php echo $var['name']?><br>
+       quantity: <?php echo $var['quantity']?><br>
+       expire date: <?php echo $var['expire_date']?><br>
+       price: <?php echo $var['price']?>
+       stock: <?php echo $var['stock']?>
+       <?php
+     }?>
+
      
-
-      <form  method="post">
-        <div class="input-group mb-3">
-          <input type="text" class="form-control"name="e1" placeholder="add quantity">
+                   <form action="" method="POST">
+                 <div class="col-md-2" style="margin-left:70%;margin-bottom:20%;">
+          
+               <div class="input-group mb-3">
+          <input type="text" class="form-control"name="e1" placeholder="quantity">
           <div class="input-group-append">
-            <div class="input-group-text">
-              <span class="fas fa-envelope"></span>
-            </div>
+    </div>
           </div>
-        </div>
-      
-        <div class="row">
-         
-          <!-- /.col -->
-          <div class="col-12">
-            <button type="submit" name="b1"class="btn btn-primary btn-block">ADD</button>
-          </div>
-          <!-- /.col -->
-        </div>
-      </form>
-
+         <br>
+                        <button type="submit" class="btn btn-primary btn-block" name="b1">submit</button>
+                        <button type="submit" class="btn btn-primary btn-block" name="a1">Add to cart</button>
+                         
+                       
+                
+                   </tbody>
+                   </table>  
+              </div>
+                  </form>
      
       <!-- /.social-auth-links -->
 

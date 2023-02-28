@@ -176,20 +176,7 @@
                       <p>Register </p>
                     </a>
                   </li>
-                  <li class="nav-item">
-                    <a href="shop_forgotpassword.phpl" class="nav-link">
-                      <i class="far fa-circle nav-icon"></i>
-                      <p>Forgot Password </p>
-                    </a>
-                  </li>
-                  <li class="nav-item">
-                    <a href="shop_recoverpassword.php" class="nav-link">
-                      <i class="far fa-circle nav-icon"></i>
-                      <p>Recover Password </p>
-                    </a>
-                  </li>
-                </ul>
-              </li>
+                 
            
       </nav>
       <!-- /.sidebar-menu -->

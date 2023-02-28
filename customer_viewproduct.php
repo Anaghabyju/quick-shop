@@ -1,8 +1,8 @@
 <?php
 include 'connectr.php';
 $del=mysqli_query($con,"SELECT * FROM category_tbl");
-if(isset($_POST['sub']))
-{
+if(isset($_POST['sub'])){
+
   $category=$_POST['category'];
 // var_dump($category);
 // exit();
@@ -10,6 +10,7 @@ if(isset($_POST['sub']))
 $ben=mysqli_query($con,"SELECT * FROM product_tbl WHERE category_id='$category'");
 
 $data=mysqli_query($con,"SELECT * FROM product_tbl INNER JOIN category_tbl ON category_tbl.category_id=product_tbl.category_id");
+
 ?>
 
 <!DOCTYPE html>
@@ -136,8 +137,8 @@ div.desc {
                     <tbody>
                       <tr>
                       <div class="gallery">
-                                    <img src="./img/<?php echo $var['image']?> "height='30px'width='30px'><br><label for=""> <div class="desc"><?php echo $var['name']?><br>quantity:<?php echo $var['quantity']?><br>price:<?php echo $var['price']?><br>exp_date:<?php echo $var['expire_date']?><br>stock:<?php echo $var['stock']?></div></td>
-                    <a href="buy_product.php?id=<?php echo $var['product_id']?>?">buy product</a>
+                      <img src="./img/<?php echo $var['image']?> "height='25px'width='30px'><br><label for=""> <div class="desc" style="font-size:12px;"><?php echo $var['name']?><br>quantity:<?php echo $var['quantity']?><br><?php echo $var['price']?> <b>RS/-</b><br>exp_date:<?php echo $var['expire_date']?></div></td>
+                    <a href="buy_product.php?id=<?php echo $var['product_id']?>?">buy product</a></div>
                   </div>
                       </tr>
                       <?php

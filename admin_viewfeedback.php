@@ -1,17 +1,12 @@
 <?php
 include 'connectr.php';
-$del=mysqli_query($con,"SELECT * FROM category_tbl");
-if(isset($_POST['sub']))
-{
-  $category=$_POST['category'];
-
+$data=mysqli_query($con,"SELECT * FROM feedback_tbl INNER JOIN product_tbl ON feedback_tbl.product_id=product_tbl.product_id INNER JOIN customer_tbl ON feedback_tbl.customer_id=customer_tbl.customer_id");
+if(isset($_POST['b1'])){
+  $replay=$_POST['n1'];
+  mysqli_query($con,"UPDATE feedback_tbl  SET replay='$replay'");
 }
+?>
 
-$ben=mysqli_query($con,"SELECT * FROM product_tbl WHERE category_id='$category'");
-
-$data=mysqli_query($con,"SELECT * FROM product_tbl INNER JOIN category_tbl ON category_tbl.category_id=product_tbl.category_id");
-
-?> 
 
 <!DOCTYPE html>
 <html lang="en">
@@ -40,28 +35,31 @@ $data=mysqli_query($con,"SELECT * FROM product_tbl INNER JOIN category_tbl ON ca
   <link rel="stylesheet" href="plugins/daterangepicker/daterangepicker.css">
   <!-- summernote -->
   <link rel="stylesheet" href="plugins/summernote/summernote-bs4.min.css">
- <style>
+  <style>
 div.gallery {
   margin: 5px;
   border: 1px solid #ccc;
-  float: left;
-  width: 180px;
+  float: bottom;
+  width: 900px;
+  
 }
 
 div.gallery:hover {
-  border: 1px solid blue;
+  border: 1px solid #777;
 }
 
 div.gallery img {
-  width: 60%;
+  width: 50px;
   height: auto;
 }
 
 div.desc {
-  padding: 15px;
+  padding: 17px;
   text-align: center;
 }
-</style> 
+</style>
+
+
 </head>
 <body class="hold-transition sidebar-mini layout-fixed">
 <div class="wrapper">
@@ -73,13 +71,13 @@ div.desc {
 
   <!-- Navbar -->
   <?php
-  include 'customer_navbar.php';
+  include 'admin_navbar.php';
   ?>
   <!-- /.navbar -->
 
   <!-- Main Sidebar Container -->
   <?php
-  include 'customer_sidebar.php';
+  include 'admin_sidebar.php';
   ?>
       <!-- /.sidebar-menu -->
     
@@ -104,56 +102,41 @@ div.desc {
         </div><!-- /.row -->
       </div><!-- /.container-fluid -->
     </div>
-    <section class="content">
-      <div class="container-fluid">
-        <div class="row">
-          <div class="col-md-10">
-            <div class="card">
-            <div class="card-body">
-    <table class="table table-bordered">
-            <div class="col-2" style="margin-left:80%;">
-            <form action="" method="POST">
-                     <select class="form-control" name="category">
-              
-                         <option>category</option>
-                      
-                         <?php
-                          while($var=mysqli_fetch_assoc($del)){?>
-                          <option value="<?php echo $var['category_id']?>"><?php echo $var['category']?> </option>
-                         
-                         </div>
-                         
-                      <?php
-                      
-                        }?> 
-                        </select>
-                        <br>
-                        <button type="submit" class="btn btn-primary btn-block" name="sub">submit</button>
-                         
-                       
-                   <?php
-                   while($var=mysqli_fetch_assoc($ben)){?>
-                   
-                    <tbody>
-                      <tr>
-                      <div class="gallery">
-                <img src="./img/<?php echo $var['image']?> "height='30px'width='30px'><br><label for=""> <div class="desc"><?php echo $var['name']?><br>quantity:<?php echo $var['quantity']?><br>price:<?php echo $var['price']?><br>exp_date:<?php echo $var['expire_date']?><br>stock:<?php echo $var['stock']?></div></td>
-                     
-                  </div>
-                      </tr>
-                      <?php
-                   }?>
-                   </tbody>
-                   </table>  
-              </div>
-                  </form>
-              <!-- /.card-body -->
+
+    <div class="col-sm-18">
+    <div class="card-body login-card-body">
+    <div class="col-sm-6">
+    <div class="card-body register-card-body">
+
+    <?php
+    while($var=mysqli_fetch_assoc($data)){?>
+    <tr>
+
+    <div class="gallery">
+     <img class="profile-user-img img-circle"  src="./img/<?php echo $var['profile']?> "height='30px'width='30px'>&emsp;<?php echo $var['customer_name']?><br>
+     &emsp;<?php echo $var['feedback']?></td><br>
+    &emsp; <form action="" method="post">
+        <div class="input-group mb-3">
+        <div class="col-sm-2">
+          <input type="text" class="form-control" name="n1" placeholder="replay"><br>
+          <button type="submit" name="b1"class="btn btn-primary btn-block">submit</button>
+        </div>
+  </div><br> 
+    
+     </div>
+     </tr>
+      <?php
+    }?>
+    
+   
+   
+  </div> 
+  </form>
+  </div>
+    
+              <!-- /.card-header -->
              
-            </div>
-                 </div>
-
- -->
-
+                   
 
     <!-- Control Sidebar -->
   <aside class="control-sidebar control-sidebar-dark">

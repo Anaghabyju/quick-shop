@@ -2,7 +2,7 @@
 include 'connectr.php';
 session_start();
 $del=$_SESSION['log'];
-$data=mysqli_query($con,"SELECT * FROM order_tbl INNER JOIN customer_tbl ON order_tbl.customer_id=customer_tbl.login_id INNER JOIN product_tbl ON order_tbl.product_id=product_tbl.product_id WHERE customer_tbl.login_id='$del'");
+$data=mysqli_query($con,"SELECT * FROM cart_tbl INNER JOIN product_tbl ON cart_tbl.product_id=product_tbl.product_id  WHERE cart_tbl.customer_id='$del'");
 
 // var_dump($data);
 // exit();
@@ -117,9 +117,9 @@ div.desc {
                     <tbody>
                       <tr>
                       <div class="gallery">
-                     <img src="./img/<?php echo $var['image']?> "height='30px'width='30px'><br><label for=""> <div class="desc"><?php echo $var['name']?><br>quantity:<?php echo $var['quantity']?><br>price:<?php echo $var['price']?><br>exp_date:<?php echo $var['expire_date']?><br>stock:<?php echo $var['stock']?></div></td>
-                    <a href="">add</a>
-                    <a href="cartdelete.php?id=<?php echo $var['order_id']?>">remove</a>
+                     <img src="./img/<?php echo $var['image']?> "height='30px'width='30px'><br><label for=""> <div class="desc" style="font-size:12px;"><?php echo $var['name']?><br>quantity:<?php echo $var['available_quantity']?><br>price:<?php echo $var['price']?></div></td>
+                     <a href="customer_cartdelete.php?id=<?php echo $var['product_id']?>">delete</a>
+                  
                   </div>
                       </tr>
                       <?php

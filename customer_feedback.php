@@ -1,13 +1,15 @@
 <?php
 session_start();
 include 'connectr.php';
+$del=$_GET['pid'];
+$data=mysqli_query($con,"SELECT * FROM feedback_tbl INNER JOIN customer_tbl ON feedback_tbl.customer_id=customer_tbl.customer_id WHERE product_id='$del'");
 if(isset($_POST['b1'])){
   $feedback=$_POST['p1'];
   $cust= $_SESSION['log']; 
   $del=$_GET['pid'];
-$data=mysqli_query($con,"INSERT INTO feedback_tbl(feedback,product_id,customer_id) VALUES('$feedback','$del','$cust");
-var_dump($data);
-exit();
+mysqli_query($con,"INSERT INTO feedback_tbl(feedback,product_id,customer_id) VALUES('$feedback','$del','$cust')");
+// var_dump($data);
+// exit();
 }
 ?>
 
@@ -38,6 +40,29 @@ exit();
   <link rel="stylesheet" href="plugins/daterangepicker/daterangepicker.css">
   <!-- summernote -->
   <link rel="stylesheet" href="plugins/summernote/summernote-bs4.min.css">
+  <style>
+div.gallery {
+  margin: 5px;
+  border: 1px solid #ccc;
+  float: bottom;
+  width: 900px;
+  
+}
+
+div.gallery:hover {
+  border: 1px solid #777;
+}
+
+div.gallery img {
+  width: 60px;
+  height: auto;
+}
+
+div.desc {
+  padding: 17px;
+  text-align: center;
+}
+</style>
 </head>
 <body class="hold-transition sidebar-mini layout-fixed">
 <div class="wrapper">
@@ -80,18 +105,38 @@ exit();
         </div><!-- /.row -->
       </div><!-- /.container-fluid -->
     </div>
-    <div class="col-sm-6" style="margin-left:20%;">
+    <div class="col-sm-12">
     <div class="card-body register-card-body">
+    <?php
+    while($var=mysqli_fetch_assoc($data)){?>
+    <tr>
+
+    <div class="gallery"><br>
+     <img class="profile-user-img img-circle" src="./img/<?php echo $var['profile']?> "height='20px'width='30px'><br><label for=""><div class="desc"><?php echo $var['customer_name']?><br>
+     
+     <?php echo $var['feedback']?><br>
+
+    replay: <?php echo $var['replay']?>
+  </div></td><br>
+    
+     </div>
+     <tr>
+
+     </tr>
+     </tr>
+      <?php
+    }?>
     <form  method="post">
         <div class="input-group mb-3">
-        <textarea rows="4" cols="50" class="form-control" name="p1" placeholder="add feedback"></textarea>
+        <textarea rows="4" cols="10" class="form-control" name="p1" placeholder="add feedback"></textarea>
           <div class="input-group-append">
             <!-- <div class="input-group-text">
               <span class="fas fa-envelope"></span>
             </div> -->
           </div>
         </div>
-        <div class="col-6">
+       
+        <div class="col-4">
             <button type="submit" name="b1"class="btn btn-primary btn-block">ADD</button>
           </div>
     

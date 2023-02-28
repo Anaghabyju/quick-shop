@@ -48,7 +48,7 @@ div.gallery {
   margin: 5px;
   border: 1px solid #ccc;
   float: left;
-  width: 180px;
+  width: 200px;
 }
 
 div.gallery:hover {
@@ -143,7 +143,7 @@ div.desc {
                    
                     <!-- <td> -->
                     <div class="gallery">
-                <img src="./img/<?php echo $var['image']?> "height='30px'width='30px'><br><label for=""><h6> <div class="desc"><?php echo $var['name']?><br>quantity:<?php echo $var['quantity']?><br><?php echo $var['price']?> <b>RS/-</b><br>exp_date:<?php echo $var['expire_date']?><br>stock:<?php echo $var['stock']?></h6></div></td>
+                <img src="./img/<?php echo $var['image']?> "height='25px'width='30px'><br><label for=""> <div class="desc" style="font-size:12px;"><?php echo $var['name']?><br>quantity:<?php echo $var['quantity']?><br><?php echo $var['price']?> <b>RS/-</b><br>exp_date:<?php echo $var['expire_date']?><br>stock:<?php echo $var['stock']?></h6></div></div></td>
                      
                   </div>
                     <!-- </tr> -->

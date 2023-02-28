@@ -16,7 +16,7 @@ if(isset($_POST['b1'])){
         $file_ext=$filearray["extension"];
 
         $filenew=basename($_FILES['image']['name']);
-        $target='C:/xampp1/htdocs/ADMINLTE-3.2.0/img/'.basename($_FILES['image']['name']);
+        $target='C:/xampp1/htdocs/ADMINLTE-master/img/'.basename($_FILES['image']['name']);
         move_uploaded_file($_FILES['image']['tmp_name'],"$target");
     }
     

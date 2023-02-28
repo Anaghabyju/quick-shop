@@ -1,12 +1,17 @@
 <?php 
 include 'connectr.php';
 session_start();
-
+$row=$_GET['id'];
+$cust= $_SESSION['log'];  
+$data=mysqli_query($con,"SELECT * FROM complaint_tbl INNER JOIN product_tbl ON complaint_tbl.product_id=product_tbl.product_id WHERE  complaint_tbl.login_id='$cust'AND product_tbl.product_id='$row' ");
+// var_dump($data);
+// exit();
 if(isset($_POST['b1'])){
     $complaint=$_POST['p1'];
     $cust= $_SESSION['log'];  
     $id=$_GET['id'];
     mysqli_query($con,"INSERT INTO complaint_tbl(login_id,product_id,complaint)VALUES('$cust','$id','$complaint') ");
+
 }
 
 
@@ -38,6 +43,29 @@ if(isset($_POST['b1'])){
   <link rel="stylesheet" href="plugins/daterangepicker/daterangepicker.css">
   <!-- summernote -->
   <link rel="stylesheet" href="plugins/summernote/summernote-bs4.min.css">
+  <style>
+div.gallery {
+  margin: 5px;
+  border: 1px solid #ccc;
+  float: bottom;
+  width: 900px;
+  
+}
+
+div.gallery:hover {
+  border: 1px solid #777;
+}
+
+div.gallery img {
+  width: 60px;
+  height: auto;
+}
+
+div.desc {
+  padding: 17px;
+  /* text-align: center; */
+}
+</style>
 </head>
 <body class="hold-transition sidebar-mini layout-fixed">
 <div class="wrapper">
@@ -69,29 +97,52 @@ if(isset($_POST['b1'])){
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1 class="m-0">Dashboard</h1>
+            <!-- <h1 class="m-0">Dashboard</h1> -->
           </div><!-- /.col -->
           <div class="col-sm-6">
-            <ol class="breadcrumb float-sm-right">
-              <li class="breadcrumb-item"><a href="#">Home</a></li>
+            <!-- <ol class="breadcrumb float-sm-right"> -->
+              <!-- <li class="breadcrumb-item"><a href="#">Home</a></li>
               <li class="breadcrumb-item active">Dashboard v1</li>
-            </ol>
+            </ol> -->
           </div><!-- /.col -->
         </div><!-- /.row -->
       </div><!-- /.container-fluid -->
     </div>
-    <div class="col-sm-4"style="margin-left:20%;">
+    <div class="col-sm-18">
     <div class="card-body login-card-body">
+    <div class="col-sm-6">
+    <div class="card-body register-card-body">
+
+    <?php
+    while($var=mysqli_fetch_assoc($data)){?>
+    <tr>
+
+    <div class="gallery">
+     <img src="./img/<?php echo $var['image']?> "height='30px'width='30px'><div class="desc"><b><?php echo $var['name']?></b><br>
+    complaint: <?php echo $var['complaint']?><br> Replay:<?php echo $var['replay']?></div></td><br>
+    
+     </div>
+     </tr>
+      <?php
+    }?>
+
       
+       
+          <div class="input-group-append">
+            <!-- <div class="input-group-text">
+              <span class="fas fa-envelope"></span>
+            </div> -->
+          </div>
+        </div>
 
       <form  method="post">
     <div class="input-group mb-3">
-          <textarea rows="4" cols="50" class="form-control" name="p1"placeholder="add complaint"></textarea>
+          <textarea rows="3" cols="8" class="form-control" name="p1"placeholder="add complaint"></textarea>
           <div class="input-group-append">
         
           </div>
         </div>
-        <div class="col-12">
+        <div class="col-4">
             <button type="submit" name="b1"class="btn btn-primary btn-block">ADD</button>
           </div>
 </form>

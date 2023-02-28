@@ -5,6 +5,7 @@ $del= $_SESSION['log'];
 // var_dump($del);
 // exit();
 $data=mysqli_query($con,"SELECT * FROM customer_tbl WHERE  login_id='$del'");
+ $var=mysqli_fetch_assoc($data);
 ?>
 
 <!DOCTYPE html>
@@ -86,6 +87,7 @@ $data=mysqli_query($con,"SELECT * FROM customer_tbl WHERE  login_id='$del'");
             <table class="table table-bordered" >
                   <thead>
                   <div class="card">
+                    <form method="post">
              
               <!-- /.card-header -->
               <div>
@@ -93,14 +95,15 @@ $data=mysqli_query($con,"SELECT * FROM customer_tbl WHERE  login_id='$del'");
                   
                 
                   <tbody>
-                  <?php
-                 while($var=mysqli_fetch_assoc($data)){?>
+            
+                
                 
                   <img class="profile-user-img img-circle" src="./img/<?php echo $var['profile']?> "height='90px'width='90px' style="margin-left:25%;"><br><br>
                 
                     <tr>
                      
                       <td>name</td>
+                
                       <td><?php echo $var['customer_name']?></td>
                        
                      </tr>
@@ -120,15 +123,20 @@ $data=mysqli_query($con,"SELECT * FROM customer_tbl WHERE  login_id='$del'");
                       <td>district</td>
                       <td><?php echo $var['district']?></td>
                     </tr>
-                   <?php
-                 }?>
-                  
+                 
                   </tbody>
                   
                 </table>
                 <div class="col-md-3" style="margin-left:25%;">
-                  <button type="submit" class="btn btn-danger btn-block" name="sub">update</button>
+                <?php
+    //           $id=$var['customer_id'];
+    //  var_dump($id);
+    //  exit();
+               ?>
+              
+                <td><a href="customer_profileupdate.php?id=<?php echo $var['customer_id'];?>"class="btn btn-primary btn-block">update</button></a></td>
                 </div>
+                </form>
               </div>
               <!-- /.card-body -->
             </div>

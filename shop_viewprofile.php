@@ -1,10 +1,10 @@
 <?php
 include 'connectr.php';
 session_start();
-$ben= $_SESSION['login'];
-var_dump($ben);
-exit();
+$ben=$_SESSION['log'];
+
 $data=mysqli_query($con,"SELECT * FROM shop_tbl WHERE  login_id='$ben'");
+$var=mysqli_fetch_assoc($data)
 ?>
 
 <html lang="en">
@@ -92,8 +92,8 @@ $data=mysqli_query($con,"SELECT * FROM shop_tbl WHERE  login_id='$ben'");
                   
                 
                   <tbody>
-                  <?php
-                 while($var=mysqli_fetch_assoc($data)){?>
+                 
+                
                 
                   <img class="profile-user-img img-fluid img-circle" src="./img/<?php echo $var['profile']?> "height='60px'width='40px' style="margin-left:25%;"><br><br>
                 
@@ -119,14 +119,13 @@ $data=mysqli_query($con,"SELECT * FROM shop_tbl WHERE  login_id='$ben'");
                       <td>district</td>
                       <td><?php echo $var['district']?></td>
                     </tr>
-                   <?php
-                 }?>
+                
                   
                   </tbody>
                   
                 </table>
                 <div class="col-md-3" style="margin-left:25%;">
-                  <button type="submit" class="btn btn-danger btn-block" name="sub">update</button>
+                 <a href="shop_profileupdate.php?id=<?php echo $var['shop_id']?>" button type="submit" class="btn btn-danger btn-block">update</a></button>
                 </div>
               </div>
               <!-- /.card-body -->

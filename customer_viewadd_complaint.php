@@ -118,8 +118,8 @@ div.desc {
                     <tbody>
                       <tr>
                       <div class="gallery">
-                     <img src="./img/<?php echo $var['image']?> "height='27px'width='27px'><br><label for=""> <div class="desc"><?php echo $var['name']?></div></td>
-                    <a href="customer_complaint.php?id=<?php echo $var['product_id']?>">complaint</a>
+                     <img src="./img/<?php echo $var['image']?> "height='10px'width='17px'><br><label for=""><div class="desc" style="font-size:12px;"><?php echo $var['name']?><br>quantity: <?php echo $var['available_quantity']?><br><?php echo $var['price']?><b> Rs/-</b></div></td>
+                    <a href="customer_complaint.php?id=<?php echo $var['product_id']?>">complaint</a></div>
                     
                   </div>
                       </tr>

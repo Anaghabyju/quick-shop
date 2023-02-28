@@ -8,19 +8,19 @@ if(isset($_POST['button'])){
   $data=mysqli_query($con,"SELECT * FROM login_tbl WHERE email='$email' AND password='$password'");
   if(mysqli_num_rows($data)>0){
     $row=mysqli_fetch_assoc($data);
-    // if($row['type']=="shop")
-    // {
-    $_SESSION['login']=$row['login_id'];
-
+   
+   
+    $_SESSION['log']=$row['login_id'];
+   
+    
     header("location:shop_index.php");
     }
-     else {
+    
+ 
+  else {
     echo "<script>alert('invalid email or password')</script>";
   }
-  }
-// }
-
-
+}
 
 
 
@@ -95,7 +95,7 @@ if(isset($_POST['button'])){
     <div class="card-body login-card-body">
       <p class="login-box-msg"><b>LOGIN</b></p>
 
-      <form action="shop_index.php" method="post">
+      <form action="" method="post">
         <div class="input-group mb-3">
           <input type="email"name="email" class="form-control" placeholder="Email">
           <div class="input-group-append">
@@ -127,9 +127,7 @@ if(isset($_POST['button'])){
      
       <!-- /.social-auth-links -->
 
-      <p class="mb-1">
-        <a href="customer_forgotpassword.php">I forgot my password</a>
-      </p>
+      
       <p class="mb-0">
         <a href="customer_registration.php" class="text-center">New Registration</a>
       </p>
