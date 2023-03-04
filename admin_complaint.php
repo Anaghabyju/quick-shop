@@ -1,6 +1,6 @@
 <?php
 include 'connectr.php';
-$data=mysqli_query($con,"SELECT * FROM complaint_tbl INNER JOIN product_tbl ON complaint_tbl.product_id=product_tbl.product_id INNER JOIN customer_tbl ON complaint_tbl.login_id=customer_tbl.login_id");
+$data=mysqli_query($con,"SELECT * FROM complaint_tbl INNER JOIN product_tbl ON complaint_tbl.product_id=product_tbl.product_id INNER JOIN customer_tbl ON complaint_tbl.login_id=customer_tbl.login_id INNER JOIN shop_tbl ON shop_tbl.login_id=product_tbl.shop_id");
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -86,9 +86,12 @@ $data=mysqli_query($con,"SELECT * FROM complaint_tbl INNER JOIN product_tbl ON c
                   <thead>
                     <tr>
                        <!-- <th>oid</th> -->
+                       <th>shop name</th>
                       <th>customer name</th>
+                     
                       <th>product</th>
                       <th>complaint</th>
+                      <th>status</th>
                      
                       
                      
@@ -99,12 +102,13 @@ $data=mysqli_query($con,"SELECT * FROM complaint_tbl INNER JOIN product_tbl ON c
                   <tbody>
                     <tr>
                     <!-- <td><?php echo $var['order_id']?></td> -->
-                <!-- <td>  <input type="text" value="<?php echo $var['order_id']?>" name="oid"></td>  -->
+                <td> <?php echo $var['shop_name']?></td>
                       <td><?php echo $var['customer_name']?></td>
                      <td><img src="./img/<?php echo $var['image']?> "height='80px'width='100px'></td>
                     
                       <td><?php echo $var['complaint']?><br>
                       <a href="admin_replay.php?id=<?php echo $var['cmp_id']?>">replay</a></td>
+                      <td><?php $var['replay_status']?></td>
                      
                     </tr>
                   <?php

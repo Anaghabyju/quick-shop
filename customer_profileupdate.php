@@ -21,7 +21,7 @@ $data=mysqli_fetch_assoc($row);
           move_uploaded_file($_FILES['image']['tmp_name'],"$target");
       }
     mysqli_query($con,"UPDATE customer_tbl SET customer_name='$name',email='$email',phone='$phone',district='$district',profile='$image' WHERE customer_id='$del'");
-   
+    header("location:customer_viewprofile.php");
    }
   
  ?> 
@@ -97,7 +97,7 @@ $data=mysqli_fetch_assoc($row);
 
       <form action="" method="post" enctype="multipart/form-data">
         <div class="input-group mb-3">
-          <input type="text" class="form-control" name="n1"  value="<?php echo $data['customer_name']?>" placeholder="Full name">
+          <input type="text" required class="form-control" name="n1"  value="<?php echo $data['customer_name']?>" placeholder="Full name">
           <div class="input-group-append">
             <div class="input-group-text">
               <span class="fas fa-user"></span>
@@ -105,7 +105,7 @@ $data=mysqli_fetch_assoc($row);
           </div>
         </div>
         <div class="input-group mb-3">
-          <input type="email" class="form-control" name="e1"  value="<?php echo $data['email']?>" placeholder="Email">
+          <input type="email"  required class="form-control" name="e1"  value="<?php echo $data['email']?>" placeholder="Email">
           <div class="input-group-append">
             <div class="input-group-text">
               <span class="fas fa-envelope"></span>
@@ -113,7 +113,7 @@ $data=mysqli_fetch_assoc($row);
           </div>
         </div>
         <div class="input-group mb-3">
-          <input type="phone" class="form-control" name="p1"  value="<?php echo $data['phone']?>" placeholder="phone">
+          <input type="phone"  required class="form-control" name="p1"  value="<?php echo $data['phone']?>" placeholder="phone">
           <div class="input-group-append">
             <div class="input-group-text">
               <span class="fas fa-envelope"></span>
@@ -126,7 +126,7 @@ $data=mysqli_fetch_assoc($row);
                       <!-- select -->
                       <div class="form-group">
                         
-                        <select class="form-control" name="s1"  value="<?php echo $data['district']?>">
+                        <select class="form-control"  required name="s1"  value="<?php echo $data['district']?>">
                           <option>district</option>
                           <option>kannur</option>
                           <option>malappuram</option>
@@ -136,7 +136,7 @@ $data=mysqli_fetch_assoc($row);
                     </div>
                    </div>
         <div class="input-group mb-3">
-          <input type="file" class="form-control" name="image"  value="<?php echo $data['profile']?>">
+          <input type="file"  required class="form-control" name="image"  value="<?php echo $data['profile']?>">
           <div class="input-group-append">
             <div class="input-group-text">
               <!-- <span class="fas fa-envelope"></span> -->

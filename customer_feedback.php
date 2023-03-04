@@ -128,7 +128,7 @@ div.desc {
     }?>
     <form  method="post">
         <div class="input-group mb-3">
-        <textarea rows="4" cols="10" class="form-control" name="p1" placeholder="add feedback"></textarea>
+        <textarea rows="4" cols="10" required class="form-control" name="p1" placeholder="add feedback"></textarea>
           <div class="input-group-append">
             <!-- <div class="input-group-text">
               <span class="fas fa-envelope"></span>

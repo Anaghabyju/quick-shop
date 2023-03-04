@@ -3,7 +3,8 @@ include 'connectr.php';
 $del=$_GET['id'];
 if(isset($_POST['b1'])){
    $replay=$_POST['p1'];
-  mysqli_query($con,"UPDATE complaint_tbl SET replay='$replay' WHERE cmp_id='$del'");
+  mysqli_query($con,"UPDATE complaint_tbl SET replay='$replay',replay_status='replied' WHERE cmp_id='$del'");
+  header("location:admin_complaint.php");
 }
 ?>
 
@@ -80,7 +81,7 @@ if(isset($_POST['b1'])){
     <div class="card-body login-card-body">
     <form  method="post">
     <div class="input-group mb-3">
-          <textarea rows="4" cols="50" class="form-control" name="p1"placeholder="Replay"></textarea>
+          <textarea rows="4" cols="50" class="form-control" name="p1" require placeholder="Replay"></textarea>
           <div class="input-group-append">
         
           </div>

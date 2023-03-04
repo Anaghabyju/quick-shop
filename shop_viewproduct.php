@@ -1,19 +1,17 @@
 <?php
 include 'connectr.php';
+session_start();
+
 $del=mysqli_query($con,"SELECT * FROM category_tbl");
-if(isset($_POST['sub']))
-{
-  $category=$_POST['category'];
- 
-// var_dump($category);
-// exit();
+$var=mysqli_fetch_assoc($del);
+$shop= $_SESSION['login']; 
+
+if(isset($_POST['sub'])){
+ $category=$_POST['category'];
 
 }
 
-$ben=mysqli_query($con,"SELECT * FROM product_tbl WHERE category_id='$category'");
-
-
-// $data=mysqli_query($con,"SELECT * FROM product_tbl INNER JOIN category_tbl ON category_tbl.category_id=product_tbl.category_id");
+$ben=mysqli_query($con,"SELECT * FROM product_tbl WHERE category_id='$category' AND shop_id='$shop'");
 
 ?>
 
@@ -128,10 +126,11 @@ div.desc {
                          
                          </div>
                          
-                      <?php
-                      
-                        }?> 
+                         <?php
+                          }?>
+   
                         </select>
+                       
                         <br>
                         <button type="submit" class="btn btn-primary btn-block" name="sub">submit</button>
                          

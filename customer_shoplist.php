@@ -1,6 +1,6 @@
 <?php
 include 'connectr.php';
-$data=mysqli_query($con,"SELECT name FROM shop_tbl");
+$data=mysqli_query($con,"SELECT shop_name FROM shop_tbl WHERE status='approve'");
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -92,7 +92,7 @@ $data=mysqli_query($con,"SELECT name FROM shop_tbl");
                   </thead>
                   <tbody>
                     <tr>
-                      <td><?php echo $var['name']?></td>
+                      <td><?php echo $var['shop_name']?></td>
                       
                       
                       

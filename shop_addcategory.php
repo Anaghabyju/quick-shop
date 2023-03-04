@@ -1,8 +1,12 @@
 <?php
 include 'connectr.php';
+
 if(isset($_POST['b1'])){
 $category=$_POST['c1'];
+
 mysqli_query($con,"INSERT INTO category_tbl(category)VALUES('$category')");
+
+
 }
 ?>
 
@@ -80,7 +84,7 @@ mysqli_query($con,"INSERT INTO category_tbl(category)VALUES('$category')");
 
       <form action="shop_addcategory.php" method="post">
         <div class="input-group mb-3">
-          <input type="text" class="form-control" name="c1"placeholder="category">
+          <input type="text"  required class="form-control" name="c1"placeholder="category">
           <div class="input-group-append">
             <div class="input-group-text">
               <span class="fas fa-user"></span>

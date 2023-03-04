@@ -137,7 +137,7 @@ div.desc {
 
       <form  method="post">
     <div class="input-group mb-3">
-          <textarea rows="3" cols="8" class="form-control" name="p1"placeholder="add complaint"></textarea>
+          <textarea rows="3" cols="8" required class="form-control" name="p1"placeholder="add complaint"></textarea>
           <div class="input-group-append">
         
           </div>

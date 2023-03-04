@@ -5,6 +5,7 @@ if(isset($_POST['b1'])){
   $replay=$_POST['n1'];
   mysqli_query($con,"UPDATE feedback_tbl  SET replay='$replay'");
 }
+
 ?>
 
 
@@ -113,13 +114,15 @@ div.desc {
     <tr>
 
     <div class="gallery">
-     <img class="profile-user-img img-circle"  src="./img/<?php echo $var['profile']?> "height='30px'width='30px'>&emsp;<?php echo $var['customer_name']?><br>
+     <img class="profile-user-img img-circle"  src="./img/<?php echo $var['profile']?> "height='30px'width='30px'>&emsp;<b><?php echo $var['customer_name']?></b><br>
+     &emsp;<b><u><?php echo $var['name']?></u></b><br>
      &emsp;<?php echo $var['feedback']?></td><br>
     &emsp; <form action="" method="post">
         <div class="input-group mb-3">
         <div class="col-sm-2">
-          <input type="text" class="form-control" name="n1" placeholder="replay"><br>
+          <input type="text"  required class="form-control" name="n1" placeholder="replay"><br>
           <button type="submit" name="b1"class="btn btn-primary btn-block">submit</button>
+         
         </div>
   </div><br> 
     

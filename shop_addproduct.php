@@ -1,5 +1,6 @@
 <?php
 include 'connectr.php';
+session_start();
 $data=mysqli_query($con,"SELECT *FROM category_tbl");
 if(isset($_POST['button'])){
     $name=$_POST['name'];
@@ -9,6 +10,7 @@ if(isset($_POST['button'])){
     $stock=$_POST['stock'];
     $category=$_POST['category'];
     $image=$_FILES['image']['name'];
+     $shop=$_SESSION['login'];
     if($image != "")
     {
         $filearray=pathinfo($_FILES['image']['name']);
@@ -19,7 +21,7 @@ if(isset($_POST['button'])){
         $target='C:/xampp1/htdocs/ADMINLTE-master/img/'.basename($_FILES['image']['name']);
         move_uploaded_file($_FILES['image']['tmp_name'],"$target");
     }
-mysqli_query($con,"INSERT INTO product_tbl(name,quantity,price,expire_date,stock,category_id,image)VALUES('$name','$quantity','$price','$date','$stock','$category','$filenew')");
+mysqli_query($con,"INSERT INTO product_tbl(name,quantity,price,expire_date,stock,category_id, shop_id,image)VALUES('$name','$quantity','$price','$date','$stock','$category','$shop','$filenew')");
 }
 ?>
 
@@ -105,7 +107,7 @@ mysqli_query($con,"INSERT INTO product_tbl(name,quantity,price,expire_date,stock
                       <div class="form-group">
                        
                         
-                        <select class="form-control" name="category">
+                        <select class="form-control"  required name="category">
                           <option>category</option>
                           <?php
                           while($var=mysqli_fetch_assoc($data)){?>
@@ -118,7 +120,7 @@ mysqli_query($con,"INSERT INTO product_tbl(name,quantity,price,expire_date,stock
                     </div>
                     </div>
             <div class="input-group mb-3">
-          <input type="text" class="form-control"name="name" placeholder="item name">
+          <input type="text"  required class="form-control"name="name" placeholder="item name">
           <div class="input-group-append">
             <div class="input-group-text">
               <span class="fas fa-user"></span>
@@ -127,7 +129,7 @@ mysqli_query($con,"INSERT INTO product_tbl(name,quantity,price,expire_date,stock
         </div>
         <div class="input-group mb-3">
     
-          <input type="equantity" class="form-control" name="quant"placeholder="quantity">
+          <input type="equantity"  required class="form-control" name="quant"placeholder="quantity">
           <div class="input-group-append">
             <div class="input-group-text">
             <span class="fas fa-user"></span>
@@ -135,7 +137,7 @@ mysqli_query($con,"INSERT INTO product_tbl(name,quantity,price,expire_date,stock
           </div>
         </div>
         <div class="input-group mb-3">
-          <input type="phone" class="form-control" name="price"placeholder="price">
+          <input type="phone"  required class="form-control" name="price"placeholder="price">
           <div class="input-group-append">
             <div class="input-group-text">
               <span class="fas fa-envelope"></span>
@@ -143,7 +145,7 @@ mysqli_query($con,"INSERT INTO product_tbl(name,quantity,price,expire_date,stock
           </div>
         </div>
         <div class="input-group mb-3">
-          <input type="date" class="form-control" name="date">
+          <input type="date"  required class="form-control" name="date">
           <div class="input-group-append">
             <div class="input-group-text">
               <!-- <span class="fas fa-envelope"></span> -->
@@ -151,7 +153,7 @@ mysqli_query($con,"INSERT INTO product_tbl(name,quantity,price,expire_date,stock
           </div>
         </div>
         <div class="input-group mb-3">
-          <input type="stock" class="form-control" name="stock"placeholder="stock">
+          <input type="stock"  required class="form-control" name="stock"placeholder="stock">
           <div class="input-group-append">
             <div class="input-group-text">
               <span class="fas fa-envelope"></span>
@@ -159,7 +161,7 @@ mysqli_query($con,"INSERT INTO product_tbl(name,quantity,price,expire_date,stock
           </div>
         </div>
         <div class="input-group mb-3">
-          <input type="file" class="form-control" name="image">
+          <input type="file"  required class="form-control" name="image">
           <div class="input-group-append">
             
           </div>

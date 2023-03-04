@@ -1,7 +1,8 @@
 <?php
 include 'connectr.php';
 session_start();
-$ben=$_SESSION['log'];
+$ben=$_SESSION['login'];
+
 
 $data=mysqli_query($con,"SELECT * FROM shop_tbl WHERE  login_id='$ben'");
 $var=mysqli_fetch_assoc($data)
@@ -100,7 +101,7 @@ $var=mysqli_fetch_assoc($data)
                     <tr>
                      
                       <td>name</td>
-                      <td><?php echo $var['name']?></td>
+                      <td><?php echo $var['shop_name']?></td>
                        
                      </tr>
                     <tr>

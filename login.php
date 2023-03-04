@@ -9,19 +9,35 @@ $data=mysqli_query($con,"SELECT * FROM login_tbl WHERE email='$email' AND passwo
 if(mysqli_num_rows($data)>0){
   $row=mysqli_fetch_assoc($data);
  
- 
-
+ if($row["type"]=="customer")
+{
   $_SESSION['log']=$row['login_id'];
+ 
  
   
   header("location:customer_index.php");
+}
+if($row["type"]=="shop")
+{
+  $_SESSION['login']=$row['login_id'];
+   
+    
+  header("location:shop_index.php");
   }
   
-}
-else {
+
+if($row["type"]=="admin")
+{
+  $_SESSION['log']=$row['login_id'];
+   
+    
+  header("location:admin_index.php");
+  }
+   else {
   echo "<script>alert('invalid email or password')</script>";
 }
-
+}
+}
 ?>
 
 <!DOCTYPE html>
@@ -56,9 +72,7 @@ else {
 <div class="wrapper">
 
   <!-- Preloader -->
-  <div class="preloader flex-column justify-content-center align-items-center">
-    <img class="animation__shake" src="dist/img/AdminLTELogo.png" alt="AdminLTELogo" height="60" width="60">
-  </div>
+ 
 
   <!-- Navbar -->
   
@@ -77,14 +91,10 @@ else {
     <div class="content-header">
       <div class="container-fluid">
         <div class="row mb-2">
+          
+          <!-- /.col -->
           <div class="col-sm-6">
-            <h1 class="m-0">Dashboard</h1>
-          </div><!-- /.col -->
-          <div class="col-sm-6">
-            <ol class="breadcrumb float-sm-right">
-              <li class="breadcrumb-item"><a href="#">Home</a></li>
-              <li class="breadcrumb-item active">Dashboard v1</li>
-            </ol>
+          
           </div><!-- /.col -->
         </div><!-- /.row -->
       </div><!-- /.container-fluid -->
@@ -95,7 +105,7 @@ else {
 
       <form  method="post">
         <div class="input-group mb-3">
-          <input type="email" class="form-control"name="e1" placeholder="Email">
+          <input type="email" required class="form-control"name="e1" placeholder="Email">
           <div class="input-group-append">
             <div class="input-group-text">
               <span class="fas fa-envelope"></span>
@@ -103,7 +113,7 @@ else {
           </div>
         </div>
         <div class="input-group mb-3">
-          <input type="password" class="form-control" name="p1"placeholder="Password">
+          <input type="password" required class="form-control" name="p1"placeholder="Password">
           <div class="input-group-append">
             <div class="input-group-text">
               <span class="fas fa-lock"></span>

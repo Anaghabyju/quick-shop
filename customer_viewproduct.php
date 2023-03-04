@@ -1,15 +1,19 @@
 <?php
 include 'connectr.php';
+session_start();
 $del=mysqli_query($con,"SELECT * FROM category_tbl");
-if(isset($_POST['sub'])){
+$war=mysqli_query($con,"SELECT * FROM shop_tbl");
 
-  $category=$_POST['category'];
-// var_dump($category);
-// exit();
+if(isset($_POST['sub']));
+ {
+ $category=$_POST['category'];
+  
+  $shop= $_SESSION['login']; 
+   
 }
-$ben=mysqli_query($con,"SELECT * FROM product_tbl WHERE category_id='$category'");
+$ben=mysqli_query($con,"SELECT * FROM product_tbl  WHERE category_id='$category' AND shop_id='$shop'");
 
-$data=mysqli_query($con,"SELECT * FROM product_tbl INNER JOIN category_tbl ON category_tbl.category_id=product_tbl.category_id");
+// $data=mysqli_query($con,"SELECT * FROM product_tbl INNER JOIN category_tbl ON category_tbl.category_id=product_tbl.category_id");
 
 ?>
 
@@ -113,13 +117,29 @@ div.desc {
     <table class="table table-bordered">
             <div class="col-2" style="margin-left:80%;">
             <form action="" method="POST">
+            <select class="form-control" name="shop">
+              
+              <option>shop</option>
+           
+              <?php
+               while($var=mysqli_fetch_assoc($war)){?>
+               <option value="<?php echo $var['shop_id']?>"><?php echo $var['shop_name']?> </option>
+              
+              </div>
+              
+           <?php
+           
+             }?> 
+             </select>
+             <br>
+
                      <select class="form-control" name="category">
-                 
+              
                          <option>category</option>
                       
                          <?php
                           while($var=mysqli_fetch_assoc($del)){?>
-                          <option value="<?php echo $var['category_id']?>"><?php echo $var['category']?></option>
+                          <option value="<?php echo $var['category_id']?>"><?php echo $var['category']?> </option>
                          
                          </div>
                          
@@ -130,21 +150,24 @@ div.desc {
                         <br>
                         <button type="submit" class="btn btn-primary btn-block" name="sub">submit</button>
                          
-                       
-                   <?php
-                   while($var=mysqli_fetch_assoc($ben)){?>
+                 
+                 
+                  <?php
+                  while($var=mysqli_fetch_assoc($ben)){?>
+                    <tr>
                    
-                    <tbody>
-                      <tr>
-                      <div class="gallery">
-                      <img src="./img/<?php echo $var['image']?> "height='25px'width='30px'><br><label for=""> <div class="desc" style="font-size:12px;"><?php echo $var['name']?><br>quantity:<?php echo $var['quantity']?><br><?php echo $var['price']?> <b>RS/-</b><br>exp_date:<?php echo $var['expire_date']?></div></td>
-                    <a href="buy_product.php?id=<?php echo $var['product_id']?>?">buy product</a></div>
+                    
+                    <div class="gallery">
+                <img src="./img/<?php echo $var['image']?> "height='25px'width='30px'><br><label for=""> <div class="desc" style="font-size:12px;"><?php echo $var['name']?><br><?php echo $var['price']?> <b>RS/-</b><br>
+                <a href="buy_product.php?id=<?php echo $var['product_id']?>">buy product</a> </h6></div></div></td>
+                   
                   </div>
-                      </tr>
-                      <?php
-                   }?>
-                   </tbody>
-                   </table>  
+                 
+                   <?php
+                 }?>
+             
+                  <!-- </tbody> -->
+                </table>  
               </div>
                   </form>
               <!-- /.card-body -->

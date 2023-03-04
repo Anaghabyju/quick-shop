@@ -191,7 +191,7 @@
                 </a>
                 <ul class="nav nav-treeview">
                   <li class="nav-item">
-                    <a href="customer_login.php" class="nav-link">
+                    <a href="login.php" class="nav-link">
                       <i class="far fa-circle nav-icon"></i>
                       <p>Login </p>
                     </a>

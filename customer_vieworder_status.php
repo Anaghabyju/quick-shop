@@ -2,7 +2,7 @@
 include 'connectr.php';
 session_start();
 $del= $_SESSION['log'];
-$data=mysqli_query($con,"SELECT * FROM order_tbl INNER JOIN product_tbl ON order_tbl.product_id=product_tbl.product_id WHERE order_tbl.customer_id='$del'");
+$data=mysqli_query($con,"SELECT * FROM order_tbl INNER JOIN product_tbl ON order_tbl.product_id=product_tbl.product_id INNER JOIN shop_tbl ON product_tbl.shop_id=shop_tbl.login_id WHERE order_tbl.customer_id='$del'");
 ?>
 
 <!DOCTYPE html>
@@ -90,7 +90,7 @@ $data=mysqli_query($con,"SELECT * FROM order_tbl INNER JOIN product_tbl ON order
                     <tr>
                       <th>oid</th>
                      
-                   
+                       <th>shop name</th>
                       <th>product</th>
                       <th>quantity</th>
                       <th>order date</th>
@@ -105,9 +105,9 @@ $data=mysqli_query($con,"SELECT * FROM order_tbl INNER JOIN product_tbl ON order
                   <tbody>
                     <tr>
                     <td><?php echo $var['order_id']?></td>
-                <!-- <td>  <input type="text" value="<?php echo $var['order_id']?>" name="oid"></td>  -->
+       
                      
-                     
+                     <td><?php echo $var['shop_name']?></td>
                    
                       <td><img src="./img/<?php echo $var['image']?> "height='80px'width='100px'></td>
                       <td><?php echo $var['available_quantity']?></td> 

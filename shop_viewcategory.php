@@ -1,6 +1,9 @@
 <?php
+session_start();
 include 'connectr.php';
 $data=mysqli_query($con,"SELECT * FROM category_tbl");
+
+
 ?>
 
 

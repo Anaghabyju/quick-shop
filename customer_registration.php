@@ -98,7 +98,7 @@ if(isset($_POST['b1'])){
 
       <form action="" method="post" enctype="multipart/form-data">
         <div class="input-group mb-3">
-          <input type="text" class="form-control" name="n1" placeholder="Full name">
+          <input type="text"  required class="form-control" name="n1" placeholder="Full name">
           <div class="input-group-append">
             <div class="input-group-text">
               <span class="fas fa-user"></span>
@@ -106,7 +106,7 @@ if(isset($_POST['b1'])){
           </div>
         </div>
         <div class="input-group mb-3">
-          <input type="email" class="form-control" name="e1"placeholder="Email">
+          <input type="email"  required class="form-control" name="e1"placeholder="Email">
           <div class="input-group-append">
             <div class="input-group-text">
               <span class="fas fa-envelope"></span>
@@ -114,7 +114,7 @@ if(isset($_POST['b1'])){
           </div>
         </div>
         <div class="input-group mb-3">
-          <input type="phone" class="form-control" name="p1"placeholder="phone">
+          <input type="phone"  required class="form-control" name="p1"placeholder="phone">
           <div class="input-group-append">
             <div class="input-group-text">
               <span class="fas fa-envelope"></span>
@@ -122,7 +122,7 @@ if(isset($_POST['b1'])){
           </div>
         </div>
         <div class="input-group mb-3">
-          <input type="type" class="form-control" name="t1" placeholder="type">
+          <input type="type"  required class="form-control" name="t1" placeholder="type">
           <div class="input-group-append">
             <div class="input-group-text">
               <span class="fas fa-user"></span>
@@ -134,7 +134,7 @@ if(isset($_POST['b1'])){
                       <!-- select -->
                       <div class="form-group">
                         
-                        <select class="form-control" name="s1">
+                        <select class="form-control"  required name="s1">
                           <option>district</option>
                           <option>kannur</option>
                           <option>malappuram</option>
@@ -144,7 +144,7 @@ if(isset($_POST['b1'])){
                     </div>
                    </div>
         <div class="input-group mb-3">
-          <input type="file" class="form-control" name="image">
+          <input type="file"  required class="form-control" name="image">
           <div class="input-group-append">
             <div class="input-group-text">
               <!-- <span class="fas fa-envelope"></span> -->
@@ -152,7 +152,7 @@ if(isset($_POST['b1'])){
           </div>
         </div>
         <div class="input-group mb-3">
-          <input type="password" class="form-control" name="a1"placeholder="password">
+          <input type="password"  required class="form-control" name="a1"placeholder="password">
           <div class="input-group-append">
             <div class="input-group-text">
               <span class="fas fa-lock"></span>
@@ -165,7 +165,7 @@ if(isset($_POST['b1'])){
             <button type="submit" class="btn btn-primary btn-block" name="b1">Register</button>
             
           </div>
-          <a href="customer_login.php" class="text-center">I already registred</a>
+          <a href="login.php" class="text-center">I already registred</a>
           <!-- /.col -->
         </div>
        </form>

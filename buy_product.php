@@ -96,7 +96,7 @@ if(isset($_POST['a1'])){
        product name: <?php echo $var['name']?><br>
        quantity: <?php echo $var['quantity']?><br>
        expire date: <?php echo $var['expire_date']?><br>
-       price: <?php echo $var['price']?>
+       price: <?php echo $var['price']?><br>
        stock: <?php echo $var['stock']?>
        <?php
      }?>
@@ -106,7 +106,7 @@ if(isset($_POST['a1'])){
                  <div class="col-md-2" style="margin-left:70%;margin-bottom:20%;">
           
                <div class="input-group mb-3">
-          <input type="text" class="form-control"name="e1" placeholder="quantity">
+          <input type="text" required class="form-control"name="e1" placeholder="quantity">
           <div class="input-group-append">
     </div>
           </div>

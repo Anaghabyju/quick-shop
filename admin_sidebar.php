@@ -108,7 +108,7 @@
               </li>
              </ul>
           </li>
-          <li class="nav-item">
+          <!-- <li class="nav-item">
           <a href="pages/examples/profile.html" class="nav-link">
           <i class="nav-icon fas fa-copy"></i>
           <p>
@@ -126,7 +126,7 @@
                 </a>
               </li>
             </ul>
-          </li>
+          </li> -->
           <li class="nav-item">
             <a href="#" class="nav-link">
               <i class="nav-icon far fa-plus-square"></i>
@@ -137,7 +137,7 @@
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-              <a href="admin_login.php" class="nav-link">
+              <a href="login.php" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>
                     Login 

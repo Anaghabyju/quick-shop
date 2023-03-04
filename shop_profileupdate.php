@@ -19,7 +19,7 @@ if(isset($_POST['b1'])){
         $target='C:/xampp1/htdocs/ADMINLTE-master/img/'.basename($_FILES['image']['name']);
         move_uploaded_file($_FILES['image']['tmp_name'],"$target");
     }
-    mysqli_query($con,"UPDATE shop_tbl SET name='$name',email='$email',phone='$phone',district='$district',profile='$image'");
+    mysqli_query($con,"UPDATE shop_tbl SET shop_name='$name',email='$email',phone='$phone',district='$district',profile='$image'");
    header("location:shop_viewprofile.php");
   }
 
@@ -97,7 +97,7 @@ if(isset($_POST['b1'])){
 
       <form action="" method="post"enctype="multipart/form-data">
         <div class="input-group mb-3">
-          <input type="text" class="form-control" name="n1" value="<?php echo $var['name']?>" placeholder="shop name">
+          <input type="text"   required class="form-control" name="n1" value="<?php echo $var['shop_name']?>" placeholder="shop name">
           <div class="input-group-append">
             <div class="input-group-text">
               <span class="fas fa-user"></span>
@@ -105,7 +105,7 @@ if(isset($_POST['b1'])){
           </div>
         </div>
         <div class="input-group mb-3">
-          <input type="email" class="form-control"name="e1" value="<?php echo $var['email']?>" placeholder="Email">
+          <input type="email"  required class="form-control"name="e1" value="<?php echo $var['email']?>" placeholder="Email">
           <div class="input-group-append">
             <div class="input-group-text">
               <span class="fas fa-envelope"></span>
@@ -113,7 +113,7 @@ if(isset($_POST['b1'])){
           </div>
         </div>
         <div class="input-group mb-3">
-          <input type="phone" class="form-control"name="p1"  value="<?php echo $var['phone']?>" placeholder="phone">
+          <input type="phone"  required class="form-control"name="p1"  value="<?php echo $var['phone']?>" placeholder="phone">
           <div class="input-group-append">
             <div class="input-group-text">
               <span class="fas fa-envelope"></span>
@@ -125,7 +125,7 @@ if(isset($_POST['b1'])){
                       <!-- select -->
                       <div class="form-group">
                         
-                        <select class="form-control"name="s1" value="<?php echo $var['district']?>">
+                        <select class="form-control"  required name="s1" value="<?php echo $var['district']?>">
                           <option>district</option>
                           <option>kozhikode</option>
                           <option>malappuram</option>
@@ -136,7 +136,7 @@ if(isset($_POST['b1'])){
                     </div>
 </div>
 <div class="input-group mb-3">
-          <input type="file" class="form-control" name="image" value="<?php echo $var['profile']?>">
+          <input type="file"  required class="form-control" name="image" value="<?php echo $var['profile']?>">
           <div class="input-group-append">
             <div class="input-group-text">
               <!-- <span class="fas fa-envelope"></span> -->

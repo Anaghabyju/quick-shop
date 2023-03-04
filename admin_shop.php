@@ -101,7 +101,7 @@ $data=mysqli_query($con,"SELECT * FROM shop_tbl");
                   </thead>
                   <tbody>
                     <tr>
-                      <td><?php echo $var['name']?></td>
+                      <td><?php echo $var['shop_name']?></td>
                       <td><?php echo $var['email']?></td>
                       <td><?php echo $var['phone']?></td>
                       <td><?php echo $var['district']?></td>
